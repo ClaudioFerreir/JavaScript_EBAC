@@ -1,1 +1,1 @@
-# JavaScript_EBAC
+# JavaScript Practice Lessons
