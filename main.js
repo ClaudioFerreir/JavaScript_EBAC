@@ -36,31 +36,29 @@ function ContaPoupanca(numero, titular, saldo, taxaDeJuros) {
 
   this.calcularJuros = function() {
     const juros = this.getSaldo() * (this.taxaDeJuros / 100);
-    novoSaldo = this.getSaldo() + juros;
-    this.setSaldo(novoSaldo);
+    this.setSaldo(this.getSaldo() + juros);
     return `Juros de ${juros} reais foram adicionados ao seu saldo. Seu saldo atual é de ${this.getSaldo()} reais.`;
   }
 }
 
-
-ContaPop1 = new ContaPoupanca(123, 'João', 1000, 10);
-console.log(ContaPop1);
-console.log(ContaPop1.calcularJuros());
-
-/* function ContaCorrente(numero_conta, titular, saldo, limite) {
+function ContaCorrente(numero, titular, saldo, limite) {
+  Conta.call(this, numero, titular, saldo);
   this.limite = limite;
-  
-  Conta.call(this, numero_conta, titular, saldo);
-  
+
   this.sacar = function(valor) {
-    if(valor <= this.getSaldo + limite) {
-      this.getSaldo -= valor;
-      return `Você sacou ${valor} reais. Seu saldo atual é de ${this.setSaldo} reais.`;
+    if(valor <= this.getSaldo() + this.limite) {
+      this.setSaldo(this.getSaldo() - valor);
+      return `Você sacou ${valor} reais. Seu saldo atual é de ${this.getSaldo()} reais.`;
     } else {
       return `Você possui saldo insuficiente para essa operação.`;
     }
   }
-} */
+}
+
+ContaPoupanca1 = new ContaPoupanca(123, 'João', 1000, 10);
+ContaCorrente1 = new ContaCorrente(456, 'Maria', 1500, 500);
+ContaCorrente2 = new ContaCorrente(789, 'José', 2000, 1000);
+
 
 
 
